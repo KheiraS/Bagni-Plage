@@ -1,0 +1,93 @@
+<div class="row mt-5">
+  <div class="col-6 card shadow mx-auto p-3">
+    <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+      <div class="mb-3">
+        <label for="nom">Nom</label>
+        <input
+          type="text"
+          id="nom"
+          class="form-control"
+          placeholder="Nom"
+          formControlName="nom"
+        />
+        <!--         <app-errors-form
+          [control]="this.form.controls['name']"
+          controlLabel="'Nom'"
+        >
+        </app-errors-form> -->
+      </div>
+
+      <div class="mb-3">
+        <label for="prenom">Prénom</label>
+
+        <input
+          type="text"
+          id="prenom"
+          class="form-control"
+          placeholder="Prénom"
+          formControlName="prenom"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="motDePasse">Mot de passe</label>
+        <input
+          type="password"
+          id="motDePasse"
+          class="form-control"
+          placeholder="Mot de passe"
+          formControlName="motDePasse"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="pays">Pays</label>
+        <select formControlName="pays" id="pays">
+          <option *ngFor="let pays of paysList" [value]="pays.code">
+            {{ pays.nom }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <div *ngIf="!client">
+          <label for="lienDeParente">Lien de parenté</label>
+          <select formControlName="lienDeParente" id="lienDeParente">
+            <option
+              *ngFor="let lienDeParente of liensDeParenteList"
+              [value]="lienDeParente.id"
+            >
+              {{ lienDeParente.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="client" class="row col-6 mx-auto">
+        <a
+          (click)="onClickDeleteClient(client.id)"
+          class="btn btn-danger d-flex justify-content-center mt-5"
+          >SUPPRIMER Mon compte</a
+        >
+      </div>
+      <button
+        type="submit"
+        class="btn btn-dark btn-lg"
+        [disabled]="form.invalid"
+      >
+        {{ submitLabel }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -16,9 +16,20 @@ export class ClientsComponent implements OnInit {
     this.loadClients();
   }
 
+  /**
+   * Method to load all the data's clients from the API
+   */
   private loadClients(): void {
     this.clientService.getAll().then((clients: Client[]) => {
       this.clients = clients;
     });
+  }
+
+  /**
+   * Method to delete a client by id
+   * @param id
+   */
+  onClickDeleteClient(id: number) {
+    this.clientService.delete(id);
   }
 }

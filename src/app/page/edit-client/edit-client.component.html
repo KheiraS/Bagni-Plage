@@ -1,0 +1,11 @@
+<app-form-client
+  *ngIf="client$ | async as client"
+  title="MODIFIER UN CLIENT"
+  submitLabel="MODIFIER"
+  [client]="client"
+  (formSubmitted)="editClient($event)"
+>
+</app-form-client>
+<div class="my-4 mx-5">
+  <a href="client">retour</a>
+</div>
